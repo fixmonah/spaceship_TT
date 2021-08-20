@@ -58,3 +58,4 @@ MonoBehaviour:
   isBroken: 0
   remnantOfAmmo: 0
   damage: 0
+  defaultAmmo: {fileID: 7939810080951001638, guid: 318335f6c78d1054cacb2609e9215bfd, type: 3}

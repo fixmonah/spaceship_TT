@@ -18,11 +18,10 @@ public class Gun : MonoBehaviour
     [Space]
     [SerializeField] private int level = 1;
     [SerializeField] private GunState state = GunState.Wait;
-    [Header("Debug")]
-    [SerializeField] protected Ammo ammo;
-    [SerializeField] private bool isBroken;
-    [SerializeField] private int remnantOfAmmo;
-    [SerializeField] private int damage;
+    protected Ammo ammo;
+    private bool isBroken;
+    private int remnantOfAmmo;
+    private int damage;
 
     bool fireOrder;
     DateTime nextFireTime;
@@ -75,11 +74,7 @@ public class Gun : MonoBehaviour
         ammo = newAmmo;
     }
 
-    //void Start()
-    //{
-    //    Init();
-    //}
-    private void Init()
+    public void Init()
     {
         // update for level
         maxDamage = maxDamageDefault * level;
@@ -153,9 +148,6 @@ public class Gun : MonoBehaviour
             case GunState.Wait: StateWait(); break;
         }
     }
-
-
-
 
     void Update()
     {

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7632741149992224289}
   - component: {fileID: 5531817404548441664}
   m_Layer: 0
-  m_Name: GunSlotMiddle_3
+  m_Name: GunSlotMiddle_4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -45,4 +45,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   guns: []
   items:
-  - {fileID: 7720927168832126138, guid: 9eddf24191e55e945bea0c25b677580e, type: 3}
+  - {fileID: 5887495556670362901, guid: 4cfa16c90b3ac6d4fa034cf2aa83f5b9, type: 3}
