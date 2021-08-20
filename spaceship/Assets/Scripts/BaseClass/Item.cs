@@ -18,7 +18,7 @@ public class Item : MonoBehaviour
     }
     public void AddDamage(int newDamage) 
     {
-        damage = damage + newDamage;
+        damage += newDamage;
         if (damage >= maxDamage)
         {
             damage = maxDamage;

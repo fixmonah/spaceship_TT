@@ -34,7 +34,7 @@ public class Gun : MonoBehaviour
     public bool IsBroken() { return isBroken; }
     public void AddDamage(int hitDamage)
     {
-        damage = damage + hitDamage;
+        damage += hitDamage;
         if (damage >= maxDamage)
         {
             damage = maxDamage;

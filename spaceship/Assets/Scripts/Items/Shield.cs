@@ -16,6 +16,7 @@ public class Shield : Item
         energyShield = energyShieldDefault * level;
     }
 
+
     public int GetBulletShield() { return bulletShield; }
     public int GetEnergyShield() { return energyShield; }
 }
