@@ -5,6 +5,7 @@ using UnityEngine;
 public class Gun : MonoBehaviour
 {
     [Header("Default")]
+    [SerializeField] private string gunName;
     [SerializeField] private int maxDamageDefault = 0;
     [SerializeField] private int rateOfFirePerSecondsDefault = 0;
     [SerializeField] private int ammoSizeDefault = 0;
@@ -30,7 +31,8 @@ public class Gun : MonoBehaviour
 
     public Action<Ammo> fireAction;
 
-    public void SetDamage(int hitDamage)
+    public bool IsBroken() { return isBroken; }
+    public void AddDamage(int hitDamage)
     {
         damage = damage + hitDamage;
         if (damage >= maxDamage)
@@ -39,6 +41,8 @@ public class Gun : MonoBehaviour
             SwitchState(GunState.Broken);
         }
     }
+    public string GetName() { return gunName; }
+    public int GetLevel() { return level; }
     public void Fire() 
     {
         if (state == GunState.Wait)
@@ -66,16 +70,15 @@ public class Gun : MonoBehaviour
         }
         Init();
     }
-    //public void SetAmmo(Ammo newAmmo)
     public void SetAmmo<T>(T newAmmo) where T : Ammo
     {
         ammo = newAmmo;
     }
 
-    void Start()
-    {
-        Init();
-    }
+    //void Start()
+    //{
+    //    Init();
+    //}
     private void Init()
     {
         // update for level
@@ -156,18 +159,18 @@ public class Gun : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
-        {
-            Fire();
-        }
-        if (Input.GetMouseButtonUp(0))
-        {
-            Wait();
-        }
-        if (Input.GetKey(KeyCode.Q))
-        {
-            SetDamage(1);
-        }
+        //if (Input.GetMouseButtonDown(0))
+        //{
+        //    Fire();
+        //}
+        //if (Input.GetMouseButtonUp(0))
+        //{
+        //    Wait();
+        //}
+        //if (Input.GetKey(KeyCode.Q))
+        //{
+        //    AddDamage(1);
+        //}
 
         FireTimer();
         ReloadTimer();
