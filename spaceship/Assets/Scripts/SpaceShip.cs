@@ -66,10 +66,10 @@ public class SpaceShip : MonoBehaviour
     #endregion
 
 
-    private void Start()
-    {
-        Init();
-    }
+    //private void Start()
+    //{
+    //    Init();
+    //}
 
     public void Init()
     {
@@ -81,8 +81,57 @@ public class SpaceShip : MonoBehaviour
 
         // guns and items
         GetGunsAndItemsFromSlots();
+        InstantiateGunsAndItems();
         InitGunsAndItemsParametrs();
         ApplyItemsParametersToShip();
+    }
+
+    private void InstantiateGunsAndItems()
+    {
+        List<BulletGun> instantiateBulletGunObjects = new List<BulletGun>();
+        foreach (var item in bulletGuns)
+        {
+            var itemGO = Instantiate(item, transform);
+            instantiateBulletGunObjects.Add(itemGO);
+        }
+        bulletGuns.Clear();
+        bulletGuns = instantiateBulletGunObjects;
+
+        List<PlasmaGun> instantiatePlasmaGun = new List<PlasmaGun>();
+        foreach (var item in plasmaGuns)
+        {
+            var itemGO = Instantiate(item, transform);
+            instantiatePlasmaGun.Add(itemGO);
+        }
+        plasmaGuns.Clear();
+        plasmaGuns = instantiatePlasmaGun;
+
+        List<Engine> instantiateEngine = new List<Engine>();
+        foreach (var item in engines)
+        {
+            var itemGO = Instantiate(item, transform);
+            instantiateEngine.Add(itemGO);
+        }
+        engines.Clear();
+        engines = instantiateEngine;
+
+        List<HpGenerator> instantiateHpGenerators = new List<HpGenerator>();
+        foreach (var item in hpGenerators)
+        {
+            var itemGO = Instantiate(item, transform);
+            instantiateHpGenerators.Add(itemGO);
+        }
+        hpGenerators.Clear();
+        hpGenerators = instantiateHpGenerators;
+
+        List<Shield> instantiateShields = new List<Shield>();
+        foreach (var item in shields)
+        {
+            var itemGO = Instantiate(item, transform);
+            instantiateShields.Add(itemGO);
+        }
+        shields.Clear();
+        shields = instantiateShields;
     }
 
     private void GetGunsAndItemsFromSlots()

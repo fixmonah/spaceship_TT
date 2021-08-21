@@ -694,7 +694,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ship: {fileID: 2115297276}
-  shield: {fileID: 5887495556670362901, guid: 4cfa16c90b3ac6d4fa034cf2aa83f5b9, type: 3}
   text: {fileID: 275812775}
   damageAmmo: {fileID: 7939810080951001638, guid: 0e4a877963274434ab6cce0cfcf9d4f4, type: 3}
 --- !u!1 &800365909
@@ -1037,6 +1036,10 @@ PrefabInstance:
     - target: {fileID: 6355284076259352740, guid: b9c8e5cef173234448f1c66d941d244f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6355284076259352741, guid: b9c8e5cef173234448f1c66d941d244f, type: 3}
+      propertyPath: gunSlotsLight.Array.size
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b9c8e5cef173234448f1c66d941d244f, type: 3}

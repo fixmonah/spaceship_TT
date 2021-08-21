@@ -6,8 +6,6 @@ using UnityEngine.UI;
 public class Canvas : MonoBehaviour
 {
     public SpaceShip ship;
-
-    public Shield shield;
     
     [Space]
     public Text text;
@@ -18,9 +16,6 @@ public class Canvas : MonoBehaviour
     {
         ship.Init();
         StartCoroutine(WaitForEndOfFrame());
-        
-        shield.Init();
-        Debug.Log(shield.GetEnergyShieldPercent());
     }
     IEnumerator WaitForEndOfFrame() 
     {
