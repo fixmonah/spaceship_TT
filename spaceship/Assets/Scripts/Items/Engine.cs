@@ -11,9 +11,19 @@ public class Engine : Item
         base.Init();
         power = powerDefault * level;
     }
-    public int GetPower() { return power; }
-    //private void Start()
-    //{
-    //    Init();
-    //}
+    public int GetPower() 
+    {
+        if (isBroken)
+        {
+            return 0;
+        }
+        else
+        {
+            return power;
+        }
+    }
+    public new string ToString()
+    {
+        return $"Name: {itemName}, Damage: {damage}/{maxDamage}, Power: {power}";
+    }
 }

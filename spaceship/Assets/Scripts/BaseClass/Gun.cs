@@ -167,4 +167,9 @@ public class Gun : MonoBehaviour
         FireTimer();
         ReloadTimer();
     }
+
+    public new string ToString() 
+    {
+        return $"Name: {gunName}, Damage: {damage}/{maxDamage}, ammo:{remnantOfAmmo}/{ammoSize}, bd: {ammo.bulletDamage}, pd:{ammo.plasmaDamage}";
+    }
 }

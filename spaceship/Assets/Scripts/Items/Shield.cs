@@ -3,20 +3,44 @@
 public class Shield : Item
 {
     [Header("Default")]
-    [SerializeField] int bulletShieldDefault;
-    [SerializeField] int energyShieldDefault;
+    [SerializeField] int bulletShieldPercentDefault = 0;
+    [SerializeField] int energyShieldPercentDefault = 0;
     [Header("Update per level (auto)")]
-    [SerializeField] int bulletShield;
-    [SerializeField] int energyShield;
+    [SerializeField] int bulletShield = 0;
+    [SerializeField] int energyShield = 0;
 
     public new void Init()
     {
         base.Init();
-        bulletShield = bulletShieldDefault * level;
-        energyShield = energyShieldDefault * level;
+        bulletShield = bulletShieldPercentDefault * level;
+        energyShield = energyShieldPercentDefault * level;
     }
 
+    public int GetBulletShieldPercent() 
+    {
+        if (isBroken)
+        {
+            return 0;
+        }
+        else
+        {
+            return bulletShield;
+        }
+    }
+    public int GetEnergyShieldPercent() 
+    {
+        if (isBroken)
+        {
+            return 0;
+        }
+        else
+        {
+            return energyShield;
+        }
+    }
 
-    public int GetBulletShield() { return bulletShield; }
-    public int GetEnergyShield() { return energyShield; }
+    public new string ToString()
+    {
+        return $"Name: {itemName}, Damage: {damage}/{maxDamage}, BulletShield: {bulletShield / 100f}%, EnergyShield: {energyShield / 100f}%";
+    }
 }

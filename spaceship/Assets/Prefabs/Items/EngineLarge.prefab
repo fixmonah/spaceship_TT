@@ -46,6 +46,6 @@ MonoBehaviour:
   itemName: Small Engine
   level: 1
   maxDamageDefault: 100
-  maxDamage: 0
+  maxDamage: 100
   powerDefault: 100
   power: 0

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3016740407173921428}
   - component: {fileID: 4429123813470389530}
   m_Layer: 0
-  m_Name: AmmoPlasma_x2
+  m_Name: AmmoPlasma_reinforced
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -44,5 +44,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletDamage: 0
-  plasmaDamage: 20
+  plasmaDamage: 2
   distance: 200

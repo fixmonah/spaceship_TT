@@ -1,0 +1,72 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &6355284076259352738
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6355284076259352740}
+  - component: {fileID: 6355284076259352741}
+  m_Layer: 0
+  m_Name: SpaceShip
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6355284076259352740
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6355284076259352738}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6355284076259352741
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6355284076259352738}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 291d28603113e1d43a9460819c5edb22, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gunSlotsLight:
+  - {fileID: 78104862715370663, guid: 72affac2fd490f44b996b957ccb2ef2d, type: 3}
+  - {fileID: 78104862715370663, guid: 1c64ea358539d184f9b6b6280e8357d6, type: 3}
+  - {fileID: 78104862715370663, guid: 89b29aee74f302544b48e8751cc4510a, type: 3}
+  - {fileID: 78104862715370663, guid: 89b29aee74f302544b48e8751cc4510a, type: 3}
+  gunSlotsMiddle:
+  - {fileID: 5531817404548441664, guid: ab676e69f574a77459cb9ab0d9a9d4b5, type: 3}
+  - {fileID: 5531817404548441664, guid: 36969b06437046347a5ba42bb966b493, type: 3}
+  - {fileID: 5531817404548441664, guid: d0eab0cb14fe85d46b01856f86aee888, type: 3}
+  gunSlotsHeavie:
+  - {fileID: 1003007863504421324, guid: bb2c874a616cebb4999acb165aac7865, type: 3}
+  - {fileID: 1003007863504421324, guid: 22aea6106b98e5241b4d37c4d3723c6b, type: 3}
+  - {fileID: 1003007863504421324, guid: 56aae9c830ba6e44b83ecf86dbbdc431, type: 3}
+  maxDamageDefault: 1000
+  level: 1
+  enginePowerDefault: 20
+  shieldBulletDefault: 100
+  shieldPlasmaDefault: 100
+  maxDamage: 0
+  enginePower: 0
+  shieldBullet: 0
+  shieldPlasma: 0
+  bulletGuns: []
+  plasmaGuns: []
+  engines: []
+  hpGenerators: []
+  shields: []

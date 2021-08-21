@@ -44,5 +44,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletDamage: 0
-  plasmaDamage: 20
+  plasmaDamage: 1
   distance: 100

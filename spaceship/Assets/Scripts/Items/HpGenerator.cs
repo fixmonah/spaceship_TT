@@ -11,6 +11,19 @@ public class HpGenerator : Item
         base.Init();
         regenerationHP = regenerationHPDefault * level;
     }
-
-    public int GetRegenerationHP() { return regenerationHP; }
+    public int GetRegenerationHP() 
+    {
+        if (isBroken)
+        {
+            return 0;
+        }
+        else
+        {
+            return regenerationHP;
+        }
+    }
+    public new string ToString()
+    {
+        return $"Name: {itemName}, Damage: {damage}/{maxDamage}, RegenerationHP: {regenerationHP}";
+    }
 }

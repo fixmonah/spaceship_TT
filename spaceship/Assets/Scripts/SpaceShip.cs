@@ -4,10 +4,25 @@ using UnityEngine;
 
 public class SpaceShip : MonoBehaviour
 {
+    [Header("Ship settings")]
+    [SerializeField] private string shipName = "";
+    [SerializeField] private int level = 1;
+    [SerializeField] private int maxDamageDefault;
+    [SerializeField] private int enginePowerDefault;
+    [SerializeField] private int shieldBulletPercentDefault;
+    [SerializeField] private int shieldPlasmaPercentDefault;
+
+    [Header("Update per level (auto)")]
+    [SerializeField] private int maxDamage;
+    [SerializeField] private int enginePower;
+    [SerializeField] private int shieldBulletPercent;
+    [SerializeField] private int shieldEnergyPercent;
+
     [Header("GunSlots")]
     [SerializeField] private List<GunSlotLight> gunSlotsLight = new List<GunSlotLight>();
     [SerializeField] private List<GunSlotMiddle> gunSlotsMiddle = new List<GunSlotMiddle>();
-    [SerializeField] private List<GunSlotHeavy> gunSlotsHeavie = new List<GunSlotHeavy>();
+    [SerializeField] private List<GunSlotHeavy> gunSlotHeavy = new List<GunSlotHeavy>();
+
 
     [Header("Guns and Items from slots (auto)")]
     [SerializeField] private List<BulletGun> bulletGuns = new List<BulletGun>();
@@ -17,6 +32,9 @@ public class SpaceShip : MonoBehaviour
     [SerializeField] private List<HpGenerator> hpGenerators = new List<HpGenerator>();
     [SerializeField] private List<Shield> shields = new List<Shield>();
 
+    private int damage;
+    private bool isBroken;
+
     #region Customize Ship
     public void SetGunSlots(List<GunSlotLight> _gunSlotsLight, List<GunSlotMiddle> _gunSlotsMiddle, List<GunSlotHeavy> _gunSlotsHeavie) 
     {
@@ -24,8 +42,8 @@ public class SpaceShip : MonoBehaviour
         gunSlotsLight = _gunSlotsLight;
         gunSlotsMiddle.Clear();
         gunSlotsMiddle = _gunSlotsMiddle;
-        gunSlotsHeavie.Clear();
-        gunSlotsHeavie = _gunSlotsHeavie;
+        gunSlotHeavy.Clear();
+        gunSlotHeavy = _gunSlotsHeavie;
 
         ClearGunAndItems();
         Init();
@@ -43,6 +61,8 @@ public class SpaceShip : MonoBehaviour
     public List<Engine> GetEngines() { return engines; }
     public List<HpGenerator> GetHpGenerators() { return hpGenerators; }
     public List<Shield> GetShields() { return shields; }
+    public void SetLevel(int newLevel) { level = newLevel; }
+    public int GetLevel() { return level; }
     #endregion
 
 
@@ -51,14 +71,18 @@ public class SpaceShip : MonoBehaviour
         Init();
     }
 
-    private void Init()
+    public void Init()
     {
-        // get
+        // update ship per level
+        maxDamage = maxDamageDefault * level;
+        enginePower = enginePowerDefault * level;
+        shieldBulletPercent = shieldBulletPercentDefault * level;
+        shieldEnergyPercent = shieldPlasmaPercentDefault * level;
+
+        // guns and items
         GetGunsAndItemsFromSlots();
-        // customize
-        SetLevelGunsAndItems(); // replace to random
-        // update
-        UpdateGunsAndItemsParametrs();
+        InitGunsAndItemsParametrs();
+        ApplyItemsParametersToShip();
     }
 
     private void GetGunsAndItemsFromSlots()
@@ -77,7 +101,7 @@ public class SpaceShip : MonoBehaviour
             var items = gunSlot.GetItems();
             GetItems(items);
         }
-        foreach (var gunSlot in gunSlotsHeavie)
+        foreach (var gunSlot in gunSlotHeavy)
         {
             var guns = gunSlot.GetGuns();
             GetGuns(guns);
@@ -118,50 +142,155 @@ public class SpaceShip : MonoBehaviour
         }
     }
 
-    private void SetLevelGunsAndItems()
+    private void InitGunsAndItemsParametrs()
     {
         foreach (var gun in bulletGuns)
         {
-            gun.SetLevel(2);
+            gun.Init();
         }
         foreach (var gun in plasmaGuns)
         {
-            gun.SetLevel(2);
+            gun.Init();
         }
         foreach (var item in engines)
         {
-            item.SetLevel(2);
+            item.Init();
         }
         foreach (var item in hpGenerators)
         {
-            item.SetLevel(2);
+            item.Init();
         }
         foreach (var item in shields)
         {
-            item.SetLevel(2);
+            item.Init();
         }
     }
-    private void UpdateGunsAndItemsParametrs()
+    private void ApplyItemsParametersToShip()
     {
-        foreach (var gun in bulletGuns)
-        {
-            gun.Init();
-        }
-        foreach (var gun in plasmaGuns)
-        {
-            gun.Init();
-        }
         foreach (var item in engines)
         {
-            item.Init();
-        }
-        foreach (var item in hpGenerators)
-        {
-            item.Init();
+            enginePower += item.GetPower();
         }
         foreach (var item in shields)
         {
-            item.Init();
+            shieldBulletPercent = item.GetBulletShieldPercent();
+            shieldEnergyPercent = item.GetEnergyShieldPercent();
         }
+    }
+
+    public void AddDamage(Ammo ammo) 
+    {
+        int plasmaShield = 0;
+        int bulletShield = 0;
+        foreach (var item in shields)
+        {
+            plasmaShield += item.GetEnergyShieldPercent();
+            bulletShield += item.GetBulletShieldPercent();
+        }
+        if (plasmaShield > 100)
+        {
+            plasmaShield = 100;
+        }
+        if (bulletShield > 100)
+        {
+            bulletShield = 100;
+        }
+
+        int energyDamage = ammo.plasmaDamage * (1 - (plasmaShield / 100));
+        int bulletDamage = ammo.bulletDamage * (1 - (bulletShield / 100));
+
+
+        damage += energyDamage;
+        damage += bulletDamage;
+        if (damage < 0)
+        {
+            damage = 0;
+        }
+        if (damage > maxDamage)
+        {
+            damage = maxDamage;
+        }
+
+        // generation HP
+        if (energyDamage > 0)
+        {
+            GenerationHP();
+        }
+
+        if (damage == 0)
+        {
+            isBroken = true;
+        }
+    }
+
+    private void GenerationHP()
+    {
+        foreach (var hpGen in hpGenerators)
+        {
+            damage -= hpGen.GetRegenerationHP();
+        }
+        if (damage < 0)
+        {
+            damage = 0;
+        }
+        if (damage > maxDamage)
+        {
+            damage = maxDamage;
+        }
+    }
+
+    public new string ToString() 
+    {
+        string answer = "";
+        answer += shipName + "\n";
+
+        answer += $"level: {level}, Damage: {damage}/{maxDamage}, enginePower: {enginePower}, shieldBulletPercent: {shieldBulletPercent}, shieldEnergyPercent: {shieldEnergyPercent}\n";
+        
+        answer += $"GunSlotLight: ";
+        foreach (var item in gunSlotsLight)
+        {
+            answer += $"{item.name}, ";
+        }
+        answer += "\n";
+        answer += $"GunSlotsMiddle: ";
+        foreach (var item in gunSlotsMiddle)
+        {
+            answer += $"{item.name}, ";
+        }
+        answer += "\n";
+        answer += $"GunSlotHeavy: ";
+        foreach (var item in gunSlotHeavy)
+        {
+            answer += $"{item.name}, ";
+        }
+        answer += "\n";
+
+        answer += "BulletGun\n";
+        for (int i = 0; i < bulletGuns.Count; i++)
+        {
+            answer += $"+ {bulletGuns[i].ToString()}\n";
+        }
+        answer += "PlasmaGuns\n";
+        for (int i = 0; i < plasmaGuns.Count; i++)
+        {
+            answer += $"+ {plasmaGuns[i].ToString()}\n";
+        }
+
+        answer += "Engine\n";
+        for (int i = 0; i < engines.Count; i++)
+        {
+            answer += $"+ {engines[i].ToString()}\n";
+        }
+        answer += "Shields\n";
+        for (int i = 0; i < shields.Count; i++)
+        {
+            answer += $"+ {shields[i].ToString()}\n";
+        }
+        answer += "HPGenerators\n";
+        for (int i = 0; i < hpGenerators.Count; i++)
+        {
+            answer += $"+ {hpGenerators[i].ToString()}\n";
+        }
+        return answer;
     }
 }
