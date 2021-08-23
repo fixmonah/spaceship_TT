@@ -43,6 +43,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e039192dfaece5419522a36ca07c159, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletDamage: 2
+  bulletDamage: 20
   plasmaDamage: 0
   distance: 1000

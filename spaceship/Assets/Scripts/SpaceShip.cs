@@ -315,32 +315,21 @@ public class SpaceShip : MonoBehaviour
         }
         foreach (var item in shields)
         {
-            shieldBulletPercent += item.GetBulletShieldPercent();
-            shieldEnergyPercent += item.GetEnergyShieldPercent();
+            shieldBulletPercent += Mathf.Clamp(item.GetBulletShieldPercent(), 0, 100);
+            shieldEnergyPercent += Mathf.Clamp(item.GetEnergyShieldPercent(), 0, 100);
         }
     }
 
     public void AddDamage(Ammo ammo)
     {
-        int plasmaShield = 0;
-        int bulletShield = 0;
-        foreach (var item in shields)
-        {
-            plasmaShield += item.GetEnergyShieldPercent();
-            bulletShield += item.GetBulletShieldPercent();
-        }
-        if (plasmaShield > 100)
-        {
-            plasmaShield = 100;
-        }
-        if (bulletShield > 100)
-        {
-            bulletShield = 100;
-        }
+        int plasmaShield = shieldEnergyPercent;
+        int bulletShield = shieldBulletPercent;
 
-        int energyDamage = ammo.plasmaDamage * (1 - (plasmaShield / 100));
-        int bulletDamage = ammo.bulletDamage * (1 - (bulletShield / 100));
+        int energyDamage = (int)(ammo.plasmaDamage * (1 - (plasmaShield / 100f)));
+        int bulletDamage = (int)(ammo.bulletDamage * (1 - (bulletShield / 100f)));
 
+        //Debug.Log($"plasmaShield {ammo.plasmaDamage} * (1-({plasmaShield} / 100)) = {energyDamage}");
+        //Debug.Log($"bulletDamage {ammo.bulletDamage} * (1-({bulletShield} / 100)) = {bulletDamage}");
 
         damage += energyDamage;
         damage += bulletDamage;
@@ -396,6 +385,40 @@ public class SpaceShip : MonoBehaviour
         foreach (var item in shields)
         {
             item.AddDamage(damageValue);
+        }
+    }
+
+    void Update()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            GunFire();
+        }
+        if (Input.GetMouseButtonUp(0))
+        {
+            GunWait();
+        }
+    }
+    private void GunFire() 
+    {
+        foreach (var item in bulletGuns)
+        {
+            item.Fire();
+        }
+        foreach (var item in plasmaGuns)
+        {
+            item.Fire();
+        }
+    }
+    private void GunWait()
+    {
+        foreach (var item in bulletGuns)
+        {
+            item.Wait();
+        }
+        foreach (var item in plasmaGuns)
+        {
+            item.Wait();
         }
     }
 

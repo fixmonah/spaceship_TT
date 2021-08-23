@@ -156,19 +156,6 @@ public class Gun : MonoBehaviour
 
     void Update()
     {
-        //if (Input.GetMouseButtonDown(0))
-        //{
-        //    Fire();
-        //}
-        //if (Input.GetMouseButtonUp(0))
-        //{
-        //    Wait();
-        //}
-        //if (Input.GetKey(KeyCode.Q))
-        //{
-        //    AddDamage(1);
-        //}
-
         FireTimer();
         ReloadTimer();
     }

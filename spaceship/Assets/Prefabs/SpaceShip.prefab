@@ -45,7 +45,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shipName: First spaceship
   level: 1
-  maxDamageDefault: 1000
+  maxDamageDefault: 500
   enginePowerDefault: 20
   shieldBulletPercentDefault: 20
   shieldPlasmaPercentDefault: 20

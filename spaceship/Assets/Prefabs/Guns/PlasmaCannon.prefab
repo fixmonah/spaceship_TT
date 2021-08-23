@@ -45,8 +45,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gunName: Plasma Cannon
   maxDamageDefault: 100
-  rateOfFirePerSecondsDefault: 20
-  ammoSizeDefault: 100
+  rateOfFirePerSecondsDefault: 5
+  ammoSizeDefault: 20
   reloadTimeInSecondsDefault: 3
   maxDamage: 0
   rateOfFirePerSeconds: 0
@@ -54,8 +54,4 @@ MonoBehaviour:
   reloadTimeInSeconds: 0
   level: 1
   state: 3
-  ammo: {fileID: 0}
-  isBroken: 0
-  remnantOfAmmo: 0
-  damage: 0
   defaultAmmo: {fileID: 4429123813470389530, guid: 241ebb9f2f9f4604e9362d248ad82f6d, type: 3}
