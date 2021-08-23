@@ -18,6 +18,10 @@ public class Gun : MonoBehaviour
     [Space]
     [SerializeField] private int level = 1;
     [SerializeField] private GunState state = GunState.Wait;
+
+    public Action<Ammo> fireAction;
+    public Action updateSettings;
+
     protected Ammo ammo;
     private bool isBroken;
     private int remnantOfAmmo;
@@ -27,8 +31,6 @@ public class Gun : MonoBehaviour
     DateTime nextFireTime;
     bool reloadOrder;
     DateTime endReloadTime;
-
-    public Action<Ammo> fireAction;
 
     public bool IsBroken() { return isBroken; }
     public void AddDamage(int hitDamage)
@@ -84,6 +86,8 @@ public class Gun : MonoBehaviour
 
         remnantOfAmmo = ammoSize;
         nextFireTime = DateTime.Now;
+
+        updateSettings?.Invoke();
     }
 
     private void StateReload()
@@ -133,6 +137,7 @@ public class Gun : MonoBehaviour
     private void StateBroken()
     {
         isBroken = true;
+        updateSettings?.Invoke();
     }
 
     private void SwitchState(GunState newstate) 
@@ -170,6 +175,6 @@ public class Gun : MonoBehaviour
 
     public new string ToString() 
     {
-        return $"Name: {gunName}, Damage: {damage}/{maxDamage}, ammo:{remnantOfAmmo}/{ammoSize}, bd: {ammo.bulletDamage}, pd:{ammo.plasmaDamage}";
+        return $"Name: {gunName}, Level: {level}, Damage: {damage}/{maxDamage}, ammo:{remnantOfAmmo}/{ammoSize}, bullet damage: {ammo.bulletDamage}, plasma damage:{ammo.plasmaDamage}";
     }
 }

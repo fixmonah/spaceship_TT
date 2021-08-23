@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class HpGenerator : Item
@@ -6,11 +7,21 @@ public class HpGenerator : Item
     [SerializeField] private int regenerationHPDefault;
     [Header("Update per level (auto)")]
     [SerializeField] private int regenerationHP;
+
     public new void Init()
     {
         base.Init();
         regenerationHP = regenerationHPDefault * level;
+
+        updateSettings?.Invoke();
     }
+
+    public new void SetLevel(int newLevel)
+    {
+        level = Mathf.Clamp(newLevel, 1, 3);
+        Init();
+    }
+
     public int GetRegenerationHP() 
     {
         if (isBroken)
@@ -24,6 +35,6 @@ public class HpGenerator : Item
     }
     public new string ToString()
     {
-        return $"Name: {itemName}, Damage: {damage}/{maxDamage}, RegenerationHP: {regenerationHP}";
+        return $"Name: {itemName}, Level: {level}, Damage: {damage}/{maxDamage}, RegenerationHP: {regenerationHP}";
     }
 }

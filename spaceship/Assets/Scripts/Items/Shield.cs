@@ -14,6 +14,14 @@ public class Shield : Item
         base.Init();
         bulletShield = bulletShieldPercentDefault * level;
         energyShield = energyShieldPercentDefault * level;
+
+        updateSettings?.Invoke();
+    }
+
+    public new void SetLevel(int newLevel)
+    {
+        level = Mathf.Clamp(newLevel, 1, 3);
+        Init();
     }
 
     public int GetBulletShieldPercent() 
@@ -41,6 +49,6 @@ public class Shield : Item
 
     public new string ToString()
     {
-        return $"Name: {itemName}, Damage: {damage}/{maxDamage}, BulletShield: {bulletShield / 100f}%, EnergyShield: {energyShield / 100f}%";
+        return $"Name: {itemName}, Level: {level}, Damage: {damage}/{maxDamage}, BulletShield: {bulletShield / 100f}%, EnergyShield: {energyShield / 100f}%";
     }
 }
