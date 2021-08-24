@@ -11,18 +11,14 @@ public class Canvas : MonoBehaviour
     public Text text;
     public AmmoBullet bulletAmmo;
     public AmmoPlasma plasmaAmmo;
+    public AmmoBullet bulletAmmo2;
+    public AmmoPlasma plasmaAmmo2;
     public SpaceShip shipPrefab;
     [SerializeField] private List<GunSlotLight> gunSlotsLight = new List<GunSlotLight>();
     [SerializeField] private List<GunSlotMiddle> gunSlotsMiddle = new List<GunSlotMiddle>();
     [SerializeField] private List<GunSlotHeavy> gunSlotHeavy = new List<GunSlotHeavy>();
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        //ship.Init();
-    }
 
-    // Update is called once per frame
     void Update()
     {
         text.text = ship?.ToString();
@@ -56,9 +52,15 @@ public class Canvas : MonoBehaviour
         ship.SetGunSlots(slotsLight, slotsMiddle, slotHeavy);
     }
 
-    private void DestriyShip() 
+    public void SetNormalAmmo() 
     {
-        
+        ship.SetBulletGunAmmo(bulletAmmo);
+        ship.SetPlasmaGunAmmo(plasmaAmmo);
+    }
+    public void SetPowerlAmmo()
+    {
+        ship.SetBulletGunAmmo(bulletAmmo2);
+        ship.SetPlasmaGunAmmo(plasmaAmmo2);
     }
 
     public void AddShipDamageBullet() 

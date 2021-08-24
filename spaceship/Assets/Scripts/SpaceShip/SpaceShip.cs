@@ -102,6 +102,20 @@ public class SpaceShip : MonoBehaviour
             item.SetLevel(newLevel);
         }
     }
+    public void SetBulletGunAmmo(AmmoBullet newBullet) 
+    {
+        foreach (var item in bulletGuns)
+        {
+            item.SetAmmo(newBullet);
+        }
+    }
+    public void SetPlasmaGunAmmo(AmmoPlasma newBullet)
+    {
+        foreach (var item in plasmaGuns)
+        {
+            item.SetAmmo(newBullet);
+        }
+    }
     public int GetLevel() { return level; }
     #endregion
 
