@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 30f2fbf4a62ec3246ba30f31ab011c86
+guid: d49c20529e06b444dbe7ae849c916146
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 6549716674001114284
-    second: Ui_heroes_board_0
+      213: 6476289510197024449
+    second: Ui_popup_bck_transparent_0
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -44,7 +44,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -106,22 +106,22 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Ui_heroes_board_0
+      name: Ui_popup_bck_transparent_0
       rect:
         serializedVersion: 2
-        x: 4
-        y: 1
-        width: 325
-        height: 480
+        x: 0
+        y: 0
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
-      border: {x: 51, y: 62, z: 105, w: 109}
+      border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ca41a45fc9445ea50800000000000000
-      internalID: 6549716674001114284
+      spriteID: 1c6d1e52ff660e950800000000000000
+      internalID: 6476289510197024449
       vertices: []
       indices: 
       edges: []
