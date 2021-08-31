@@ -6,13 +6,13 @@ public class Gun : MonoBehaviour
 {
     [Header("Default")]
     [SerializeField] private string gunName;
-    [SerializeField] private int maxDamageDefault = 0;
-    [SerializeField] private int rateOfFirePerSecondsDefault = 0;
+    [SerializeField] private int maxDamageDefault = 0;              
+    [SerializeField] private int rateOfFirePerSecondsDefault = 0;   
     [SerializeField] private int ammoSizeDefault = 0;
     [SerializeField] private float reloadTimeInSecondsDefault = 0;
     [Header("Update per level (auto)")]
-    [SerializeField] private int maxDamage = 0;
-    [SerializeField] private int rateOfFirePerSeconds = 0;
+    [SerializeField] private int maxDamage = 0;                     
+    [SerializeField] private int rateOfFirePerSeconds = 0;          
     [SerializeField] private int ammoSize = 0;
     [SerializeField] private float reloadTimeInSeconds = 0;
     [Space]
@@ -24,7 +24,7 @@ public class Gun : MonoBehaviour
 
     protected Ammo ammo;
     private bool isBroken;
-    private int remnantOfAmmo;
+    private int remnantAmmoInGun;                                     
     private int damage;
 
     bool fireOrder;
@@ -32,7 +32,7 @@ public class Gun : MonoBehaviour
     bool reloadOrder;
     DateTime endReloadTime;
 
-    public bool IsBroken() { return isBroken; }
+    public bool GetBroken() { return isBroken; }                     
     public void AddDamage(int hitDamage)
     {
         damage += hitDamage;
@@ -42,8 +42,8 @@ public class Gun : MonoBehaviour
             SwitchState(GunState.Broken);
         }
     }
-    public string GetName() { return gunName; }
-    public int GetLevel() { return level; }
+    public string GetName() { return gunName; }                     
+    public int GetLevel() { return level; }                         
     public void Fire() 
     {
         if (state == GunState.Wait)
@@ -71,7 +71,7 @@ public class Gun : MonoBehaviour
         }
         Init();
     }
-    public void SetAmmo<T>(T newAmmo) where T : Ammo
+    public void SetAmmo<T>(T newAmmo) where T : Ammo 
     {
         ammo = newAmmo;
     }
@@ -84,7 +84,7 @@ public class Gun : MonoBehaviour
         ammoSize = ammoSizeDefault * level;
         reloadTimeInSeconds = reloadTimeInSecondsDefault / level;
 
-        remnantOfAmmo = ammoSize;
+        remnantAmmoInGun = ammoSize;
         nextFireTime = DateTime.Now;
 
         updateSettings?.Invoke();
@@ -99,7 +99,7 @@ public class Gun : MonoBehaviour
     {
         if (reloadOrder && DateTime.Now > endReloadTime)
         {
-            remnantOfAmmo = ammoSize;
+            remnantAmmoInGun = ammoSize;
             reloadOrder = false;
             SwitchState(GunState.Wait);
         }
@@ -118,17 +118,17 @@ public class Gun : MonoBehaviour
     {
         if (DateTime.Now >= nextFireTime 
             && isBroken == false 
-            && remnantOfAmmo > 0 
+            && remnantAmmoInGun > 0 
             && fireOrder)
         {
             // Fire
             fireAction?.Invoke(ammo);
-            remnantOfAmmo--;
+            remnantAmmoInGun--;
             
             int mSeconds = 1000 / rateOfFirePerSeconds;
             nextFireTime = DateTime.Now.AddMilliseconds(mSeconds);
         }
-        if (remnantOfAmmo <= 0 && ammoSize != 0)
+        if (state != GunState.Reload && remnantAmmoInGun <= 0 && ammoSize != 0)
         {
             SwitchState(GunState.Reload);
         }
@@ -162,6 +162,6 @@ public class Gun : MonoBehaviour
 
     public new string ToString() 
     {
-        return $"Name: {gunName}, Level: {level}, Damage: {damage}/{maxDamage}, ammo:{remnantOfAmmo}/{ammoSize}, bullet damage: {ammo.bulletDamage}, plasma damage:{ammo.plasmaDamage}";
+        return $"Name: {gunName}, Level: {level}, Damage: {damage}/{maxDamage}, ammo:{remnantAmmoInGun}/{ammoSize}, bullet damage: {ammo.bulletDamage}, plasma damage:{ammo.plasmaDamage}";
     }
 }

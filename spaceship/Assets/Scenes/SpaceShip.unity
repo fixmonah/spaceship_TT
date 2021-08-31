@@ -287,7 +287,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 714496699}
         m_TargetAssemblyTypeName: Canvas, Assembly-CSharp
-        m_MethodName: EngineLevelDown
+        m_MethodName: ButtonEngineLevelDown
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -420,7 +420,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 714496699}
         m_TargetAssemblyTypeName: Canvas, Assembly-CSharp
-        m_MethodName: SetPowerlAmmo
+        m_MethodName: ButtonSetPowerlAmmo
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -792,7 +792,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 714496699}
         m_TargetAssemblyTypeName: Canvas, Assembly-CSharp
-        m_MethodName: PlasmaGunLevelUp
+        m_MethodName: ButtonPlasmaGunLevelUp
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1063,7 +1063,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 714496699}
         m_TargetAssemblyTypeName: Canvas, Assembly-CSharp
-        m_MethodName: AddShipDamageBullet
+        m_MethodName: ButtonAddShipDamageBullet
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1852,7 +1852,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 714496699}
         m_TargetAssemblyTypeName: Canvas, Assembly-CSharp
-        m_MethodName: SetNormalAmmo
+        m_MethodName: ButtonSetNormalAmmo
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2339,7 +2339,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 714496699}
         m_TargetAssemblyTypeName: Canvas, Assembly-CSharp
-        m_MethodName: CreateRamdomShip
+        m_MethodName: ButtonCreateRamdomShip
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2630,7 +2630,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 714496699}
         m_TargetAssemblyTypeName: Canvas, Assembly-CSharp
-        m_MethodName: HpGeneratorsLevelDown
+        m_MethodName: ButtonHpGeneratorsLevelDown
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2763,7 +2763,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 714496699}
         m_TargetAssemblyTypeName: Canvas, Assembly-CSharp
-        m_MethodName: AddShipDamagePlasma
+        m_MethodName: ButtonAddShipDamagePlasma
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3265,7 +3265,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 714496699}
         m_TargetAssemblyTypeName: Canvas, Assembly-CSharp
-        m_MethodName: PlasmaGunLevelDown
+        m_MethodName: ButtonPlasmaGunLevelDown
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3398,7 +3398,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 714496699}
         m_TargetAssemblyTypeName: Canvas, Assembly-CSharp
-        m_MethodName: EngineLevelUp
+        m_MethodName: ButtonEngineLevelUp
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3531,7 +3531,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 714496699}
         m_TargetAssemblyTypeName: Canvas, Assembly-CSharp
-        m_MethodName: ShieldLevelDown
+        m_MethodName: ButtonShieldLevelDown
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3664,7 +3664,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 714496699}
         m_TargetAssemblyTypeName: Canvas, Assembly-CSharp
-        m_MethodName: ShipLevelUp
+        m_MethodName: ButtonShipLevelUp
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4152,7 +4152,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 714496699}
         m_TargetAssemblyTypeName: Canvas, Assembly-CSharp
-        m_MethodName: ShieldLevelUp
+        m_MethodName: ButtonShieldLevelUp
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4285,7 +4285,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 714496699}
         m_TargetAssemblyTypeName: Canvas, Assembly-CSharp
-        m_MethodName: BulletGunLevelUp
+        m_MethodName: ButtonBulletGunLevelUp
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4497,7 +4497,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 714496699}
         m_TargetAssemblyTypeName: Canvas, Assembly-CSharp
-        m_MethodName: ShipLevelDown
+        m_MethodName: ButtonShipLevelDown
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4709,7 +4709,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 714496699}
         m_TargetAssemblyTypeName: Canvas, Assembly-CSharp
-        m_MethodName: AddGunsAndItemDamage
+        m_MethodName: ButtonAddGunsAndItemDamage
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4842,7 +4842,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 714496699}
         m_TargetAssemblyTypeName: Canvas, Assembly-CSharp
-        m_MethodName: HpGeneratorsLevelUp
+        m_MethodName: ButtonHpGeneratorsLevelUp
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4975,7 +4975,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 714496699}
         m_TargetAssemblyTypeName: Canvas, Assembly-CSharp
-        m_MethodName: BulletGunLevelDown
+        m_MethodName: ButtonBulletGunLevelDown
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

@@ -18,13 +18,19 @@ public class Canvas : MonoBehaviour
     [SerializeField] private List<GunSlotMiddle> gunSlotsMiddle = new List<GunSlotMiddle>();
     [SerializeField] private List<GunSlotHeavy> gunSlotHeavy = new List<GunSlotHeavy>();
 
+    private int shipLevel = 1;
+    private int bulletGunLevel = 1;
+    private int plasmaGunLevel = 1;
+    private int engineLevel = 1;
+    private int hpGeneratorLevel = 1;
+    private int shieldLevel = 1;
 
     void Update()
     {
         text.text = ship?.ToString();
     }
 
-    public void CreateRamdomShip() 
+    public void ButtonCreateRamdomShip() 
     {
         Destroy(ship?.gameObject);
         ship = Instantiate(shipPrefab);
@@ -52,99 +58,93 @@ public class Canvas : MonoBehaviour
         ship.SetGunSlots(slotsLight, slotsMiddle, slotHeavy);
     }
 
-    public void SetNormalAmmo() 
+    public void ButtonSetNormalAmmo() 
     {
         ship.SetBulletGunAmmo(bulletAmmo);
         ship.SetPlasmaGunAmmo(plasmaAmmo);
     }
-    public void SetPowerlAmmo()
+    public void ButtonSetPowerlAmmo()
     {
         ship.SetBulletGunAmmo(bulletAmmo2);
         ship.SetPlasmaGunAmmo(plasmaAmmo2);
     }
 
-    public void AddShipDamageBullet() 
+    public void ButtonAddShipDamageBullet() 
     {
         ship.AddDamage(bulletAmmo);
     }
-    public void AddShipDamagePlasma()
+    public void ButtonAddShipDamagePlasma()
     {
         ship.AddDamage(plasmaAmmo);
     }
    
-    int shipLevel = 1;
-    public void ShipLevelUp() 
+    public void ButtonShipLevelUp() 
     {
         shipLevel = Mathf.Clamp(shipLevel+1, 1, 3);
         ship.SetLevel(shipLevel);
     }
-    public void ShipLevelDown()
+    public void ButtonShipLevelDown()
     {
         shipLevel = Mathf.Clamp(shipLevel-1, 1, 3);
         ship.SetLevel(shipLevel);
     }
-    
-    int bulletGunLevel = 1;
-    public void BulletGunLevelUp() 
+
+    public void ButtonBulletGunLevelUp() 
     {
         bulletGunLevel = Mathf.Clamp(bulletGunLevel+1, 1, 3);
         ship.SetLevelBulletGuns(bulletGunLevel);
     }
-    public void BulletGunLevelDown()
+    public void ButtonBulletGunLevelDown()
     {
         bulletGunLevel = Mathf.Clamp(bulletGunLevel-1, 1, 3);
         ship.SetLevelBulletGuns(bulletGunLevel);
     }
 
-    int plasmaGunLevel = 1;
-    public void PlasmaGunLevelUp()
+    public void ButtonPlasmaGunLevelUp()
     {
         plasmaGunLevel = Mathf.Clamp(plasmaGunLevel+1, 1, 3);
         ship.SetLevelPlasmaGuns(plasmaGunLevel);
     }
-    public void PlasmaGunLevelDown()
+    public void ButtonPlasmaGunLevelDown()
     {
         plasmaGunLevel = Mathf.Clamp(plasmaGunLevel-1, 1, 3);
         ship.SetLevelPlasmaGuns(plasmaGunLevel);
     }
 
-    int engineLevel = 1;
-    public void EngineLevelUp()
+    public void ButtonEngineLevelUp()
     {
         engineLevel = Mathf.Clamp(engineLevel+1, 1, 3);
         ship.SetLevelEngines(engineLevel);
     }
-    public void EngineLevelDown()
+    public void ButtonEngineLevelDown()
     {
         engineLevel = Mathf.Clamp(engineLevel-1, 1, 3);
         ship.SetLevelEngines(engineLevel);
     }
 
-    int hpGeneratorLevel = 1;
-    public void HpGeneratorsLevelUp()
+    public void ButtonHpGeneratorsLevelUp()
     {
         hpGeneratorLevel = Mathf.Clamp(hpGeneratorLevel+1, 1, 3);
         ship.SetLevelHpGenerators(hpGeneratorLevel);
     }
-    public void HpGeneratorsLevelDown()
+    public void ButtonHpGeneratorsLevelDown()
     {
         hpGeneratorLevel = Mathf.Clamp(hpGeneratorLevel-1, 1, 3);
         ship.SetLevelHpGenerators(hpGeneratorLevel);
     }
 
-    int shieldLevel = 1;
-    public void ShieldLevelUp()
+    public void ButtonShieldLevelUp()
     {
         shieldLevel = Mathf.Clamp(shieldLevel+1, 1, 3);
         ship.SetLevelShields(shieldLevel);
     }
-    public void ShieldLevelDown()
+    public void ButtonShieldLevelDown()
     {
         shieldLevel = Mathf.Clamp(shieldLevel-1, 1, 3);
         ship.SetLevelShields(shieldLevel);
     }
 
-    public void AddGunsAndItemDamage() 
+    public void ButtonAddGunsAndItemDamage() 
     {
         ship.AddGunsAndItemDamage(10);
     }

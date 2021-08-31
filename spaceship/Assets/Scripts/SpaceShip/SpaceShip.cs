@@ -9,7 +9,7 @@ public class SpaceShip : MonoBehaviour
     [SerializeField] private int level = 1;
     [SerializeField] private int maxDamageDefault;
     [SerializeField] private int enginePowerDefault;
-    [SerializeField] private int shieldBulletPercentDefault;
+    [SerializeField] private int shieldBulletPercentDefault; 
     [SerializeField] private int shieldPlasmaPercentDefault;
 
     [Header("Update per level (auto)")]
@@ -38,11 +38,8 @@ public class SpaceShip : MonoBehaviour
     #region Customize Ship
     public void SetGunSlots(List<GunSlotLight> _gunSlotsLight, List<GunSlotMiddle> _gunSlotsMiddle, List<GunSlotHeavy> _gunSlotsHeavie)
     {
-        gunSlotsLight.Clear();
         gunSlotsLight = _gunSlotsLight;
-        gunSlotsMiddle.Clear();
         gunSlotsMiddle = _gunSlotsMiddle;
-        gunSlotHeavy.Clear();
         gunSlotHeavy = _gunSlotsHeavie;
 
         ClearGunAndItems();
@@ -65,7 +62,7 @@ public class SpaceShip : MonoBehaviour
     public void SetLevel(int newLevel) 
     {
         level = newLevel;
-        UpdateParametrsFerLevel();
+        UpdateParametrsPerLevel();
     }
     public void SetLevelBulletGuns(int newLevel)
     {
@@ -124,12 +121,12 @@ public class SpaceShip : MonoBehaviour
     {
         damage = 0;
         isBroken = false;
-        UpdateParametrsFerLevel();
+        UpdateParametrsPerLevel();
 
         // guns and items
-        GetGunsAndItemsFromSlots();
+        MoveGunsAndItemsFromSlotsToShip();
         InstantiateGunsAndItems();
-        InitGunsAndItemsParametrs();
+        InitGunsAndItemsParameters();
         ApplyItemsParametersToShip();
 
         ConnectToItemsEvent();
@@ -139,23 +136,23 @@ public class SpaceShip : MonoBehaviour
     {
         foreach (var item in bulletGuns)
         {
-            item.updateSettings = UpdateParametrsFerLevel;
+            item.updateSettings = UpdateParametrsPerLevel;
         }
         foreach (var item in plasmaGuns)
         {
-            item.updateSettings = UpdateParametrsFerLevel;
+            item.updateSettings = UpdateParametrsPerLevel;
         }
         foreach (var item in engines)
         {
-            item.updateSettings = UpdateParametrsFerLevel;
+            item.updateSettings = UpdateParametrsPerLevel;
         }
         foreach (var item in hpGenerators)
         {
-            item.updateSettings = UpdateParametrsFerLevel;
+            item.updateSettings = UpdateParametrsPerLevel;
         }
         foreach (var item in shields)
         {
-            item.updateSettings = UpdateParametrsFerLevel;
+            item.updateSettings = UpdateParametrsPerLevel;
         }
     }
 
@@ -163,27 +160,27 @@ public class SpaceShip : MonoBehaviour
     {
         foreach (var item in bulletGuns)
         {
-            item.updateSettings -= UpdateParametrsFerLevel;
+            item.updateSettings -= UpdateParametrsPerLevel;
         }
         foreach (var item in plasmaGuns)
         {
-            item.updateSettings -= UpdateParametrsFerLevel;
+            item.updateSettings -= UpdateParametrsPerLevel;
         }
         foreach (var item in engines)
         {
-            item.updateSettings -= UpdateParametrsFerLevel;
+            item.updateSettings -= UpdateParametrsPerLevel;
         }
         foreach (var item in hpGenerators)
         {
-            item.updateSettings -= UpdateParametrsFerLevel;
+            item.updateSettings -= UpdateParametrsPerLevel;
         }
         foreach (var item in shields)
         {
-            item.updateSettings -= UpdateParametrsFerLevel;
+            item.updateSettings -= UpdateParametrsPerLevel;
         }
     }
 
-    private void UpdateParametrsFerLevel()
+    private void UpdateParametrsPerLevel()
     {
         // update ship per level
         maxDamage = maxDamageDefault * level;
@@ -193,31 +190,31 @@ public class SpaceShip : MonoBehaviour
         ApplyItemsParametersToShip();
     }
 
-    private void GetGunsAndItemsFromSlots()
+    private void MoveGunsAndItemsFromSlotsToShip()
     {
         foreach (var gunSlot in gunSlotsLight)
         {
             var guns = gunSlot.GetGuns();
-            GetGuns(guns);
+            MoveGunsFromSlotsToShip(guns);
             var items = gunSlot.GetItems();
-            GetItems(items);
+            MoveItemsFromSlotsToShip(items);
         }
         foreach (var gunSlot in gunSlotsMiddle)
         {
             var guns = gunSlot.GetGuns();
-            GetGuns(guns);
+            MoveGunsFromSlotsToShip(guns);
             var items = gunSlot.GetItems();
-            GetItems(items);
+            MoveItemsFromSlotsToShip(items);
         }
         foreach (var gunSlot in gunSlotHeavy)
         {
             var guns = gunSlot.GetGuns();
-            GetGuns(guns);
+            MoveGunsFromSlotsToShip(guns);
             var items = gunSlot.GetItems();
-            GetItems(items);
+            MoveItemsFromSlotsToShip(items);
         }
     }
-    private void GetGuns(Gun[] guns)
+    private void MoveGunsFromSlotsToShip(Gun[] guns)
     {
         foreach (var gun in guns)
         {
@@ -231,7 +228,7 @@ public class SpaceShip : MonoBehaviour
             }
         }
     }
-    private void GetItems(Item[] items)
+    private void MoveItemsFromSlotsToShip(Item[] items)
     {
         foreach (var item in items)
         {
@@ -258,16 +255,14 @@ public class SpaceShip : MonoBehaviour
             var itemGO = Instantiate(item, transform);
             instantiateBulletGunObjects.Add(itemGO);
         }
-        bulletGuns.Clear();
         bulletGuns = instantiateBulletGunObjects;
-
+        
         List<PlasmaGun> instantiatePlasmaGun = new List<PlasmaGun>();
         foreach (var item in plasmaGuns)
         {
             var itemGO = Instantiate(item, transform);
             instantiatePlasmaGun.Add(itemGO);
         }
-        plasmaGuns.Clear();
         plasmaGuns = instantiatePlasmaGun;
 
         List<Engine> instantiateEngine = new List<Engine>();
@@ -276,7 +271,6 @@ public class SpaceShip : MonoBehaviour
             var itemGO = Instantiate(item, transform);
             instantiateEngine.Add(itemGO);
         }
-        engines.Clear();
         engines = instantiateEngine;
 
         List<HpGenerator> instantiateHpGenerators = new List<HpGenerator>();
@@ -285,7 +279,6 @@ public class SpaceShip : MonoBehaviour
             var itemGO = Instantiate(item, transform);
             instantiateHpGenerators.Add(itemGO);
         }
-        hpGenerators.Clear();
         hpGenerators = instantiateHpGenerators;
 
         List<Shield> instantiateShields = new List<Shield>();
@@ -294,11 +287,10 @@ public class SpaceShip : MonoBehaviour
             var itemGO = Instantiate(item, transform);
             instantiateShields.Add(itemGO);
         }
-        shields.Clear();
         shields = instantiateShields;
     }
 
-    private void InitGunsAndItemsParametrs()
+    private void InitGunsAndItemsParameters()
     {
         foreach (var gun in bulletGuns)
         {
@@ -342,9 +334,6 @@ public class SpaceShip : MonoBehaviour
         int energyDamage = (int)(ammo.plasmaDamage * (1 - (plasmaShield / 100f)));
         int bulletDamage = (int)(ammo.bulletDamage * (1 - (bulletShield / 100f)));
 
-        //Debug.Log($"plasmaShield {ammo.plasmaDamage} * (1-({plasmaShield} / 100)) = {energyDamage}");
-        //Debug.Log($"bulletDamage {ammo.bulletDamage} * (1-({bulletShield} / 100)) = {bulletDamage}");
-
         damage += energyDamage;
         damage += bulletDamage;
 
@@ -377,7 +366,6 @@ public class SpaceShip : MonoBehaviour
             damage = maxDamage;
         }
     }
-
     public void AddGunsAndItemDamage(int damageValue)
     {
         foreach (var gun in bulletGuns)
@@ -401,7 +389,7 @@ public class SpaceShip : MonoBehaviour
             item.AddDamage(damageValue);
         }
     }
-
+    // for test only
     void Update()
     {
         if (Input.GetMouseButtonDown(0))
